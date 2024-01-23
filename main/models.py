@@ -21,7 +21,7 @@ class Link(models.Model):
     created_at = models.DateTimeField(default=timezone.now, verbose_name='Время создания')
 
     def __str__(self):
-        return f'{self.title}'
+        return f'{self.title} ({self.email}, {self.country}, {self.city}, {self.street}, {self.house_number})'
 
     class Meta:
         verbose_name = 'Звено'
