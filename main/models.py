@@ -6,7 +6,6 @@ NULLABLE = {'null': True, 'blank': True}
 
 
 class Contacts(models.Model):
-    name = models.CharField(max_length=50, verbose_name='Название компании')
     email = models.EmailField(unique=True, verbose_name='Email')
     country = models.CharField(max_length=50, verbose_name='Страна')
     city = models.CharField(max_length=50, verbose_name='Город')
@@ -22,13 +21,14 @@ class Contacts(models.Model):
 
 
 class Link(models.Model):
-    NAMES = (
-        ('Factory', 'Factory'),
-        ('Retail', 'Retail network'),
-        ('Trader', 'Sole trader')
+    OBJECTS = (
+        ('0', 'Factory'),
+        ('1', 'Retail network'),
+        ('2', 'Sole trader')
     )
 
-    name = models.CharField(max_length=50, choices=NAMES, verbose_name='Название звена сети')
+    name = models.CharField(max_length=50, verbose_name='Название компании')
+    network_object = models.CharField(max_length=50, choices=OBJECTS, verbose_name='Объект сети')
     contacts = models.OneToOneField(Contacts, on_delete=models.CASCADE, verbose_name='Контакты')
     product = models.ManyToManyField('Product', verbose_name='Продукты')
     provider = models.ForeignKey('self', on_delete=models.SET_NULL, verbose_name='Поставщик', **NULLABLE)

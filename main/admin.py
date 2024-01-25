@@ -7,12 +7,12 @@ from main.models import Link, Contacts, Product
 
 @admin.register(Contacts)
 class ContactsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'country', 'city', 'street', 'house_number',)
+    list_display = ('email', 'country', 'city', 'street', 'house_number',)
 
 
 @admin.register(Link)
 class LinkAdmin(admin.ModelAdmin):
-    list_display = ('name', 'contacts', 'get_providers', 'debt', 'created_at',)
+    list_display = ('network_object', 'name', 'contacts', 'get_providers', 'debt', 'created_at',)
     list_filter = ('contacts__city',)
     actions = ('clear_debt',)
     list_display_links = ('get_providers',)
